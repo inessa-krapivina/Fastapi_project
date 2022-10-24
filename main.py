@@ -3,11 +3,11 @@ import uvicorn
 from fastapi.routing import APIRoute
 
 
-async def ping() -> dict:
+def ping() -> dict:
     return {'Success': True}
 
 
-async def mainpage() -> str:
+def mainpage() -> str:
     return 'YOU ARE ON THE MAIN PAGE'
 
 routes = [
