@@ -6,22 +6,29 @@ services:
     image: nginx:alpine
     depends_on:
         -  app
-        -  app2
     ports:
         - "80:80"
     volumes:
         -  ./app/conf.d:/etc/nginx/conf.d
 
   app:
-    container_name: "app"
     image: app
+    depends_on:
+      - db
     build:
         context: .
         dockerfile: Dockerfile
+    deploy:
+       mode: replicated
+       replicas: 2
 
-  app2:
-    container_name: "app2"
-    image: app
-    build:
-        context: .
-        dockerfile: Dockerfile
+  db:
+    container_name: "postgres_db"
+    image: "postgres"
+    environment:
+      POSTGRES_PASSWORD: 123123
+      POSTGRES_USER: admin
+      POSTGRES_DB: db
+
+    ports:
+      - "5432:5432"

@@ -1,22 +1,50 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 import uvicorn
-from fastapi.routing import APIRoute
+from database.db import create_tables, get_session, engine
+from database.models import User
+from sqlmodel import Session, select
+from typing import Optional
+import platform
+from datetime import datetime
 
-
-async def ping() -> dict:
-    return {'Success': True}
-
-
-async def mainpage() -> str:
-    return 'YOU ARE ON THE MAIN PAGE'
-
-routes = [
-    APIRoute(path='/ping', endpoint=ping, methods=['GET']),
-    APIRoute(path='/', endpoint=mainpage, methods=['GET'])
-]
 
 app = FastAPI()
-app.include_router(APIRouter(routes=routes))
+
+
+@app.on_event("startup")
+def on_startup():
+    create_tables()
+
+
+def create_user():
+    with Session(engine) as session:
+        user = User(
+            name=platform.node(),
+            date=str(datetime.now())
+        )
+        session.add(user)
+        session.commit()
+
+        session.refresh(user)
+        return user
+
+
+@app.get("/")
+def read_users() -> User:
+    with Session(engine) as session:
+        statement = select(User).where(User.name == platform.node())
+        results = session.exec(statement)
+
+        users = results.all()
+        if not users:
+            user = create_user()
+            return user
+
+        create_user()
+        user = users[-1]
+        return user
+
+
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)
