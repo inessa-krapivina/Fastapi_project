@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 import uvicorn
-from database.db import create_tables, get_session, engine
-from database.models import User
+from src.database.db import create_tables, engine
+from src.database.models import User
 from sqlmodel import Session, select
-from typing import Optional
 import platform
 from datetime import datetime
 
@@ -43,8 +42,3 @@ def read_users() -> User:
         create_user()
         user = users[-1]
         return user
-
-
-
-if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)

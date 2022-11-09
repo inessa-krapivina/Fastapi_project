@@ -5,4 +5,5 @@ COPY poetry.lock /
 RUN poetry config virtualenvs.in-project true
 RUN poetry install --no-root
 COPY ./ /
-CMD ["poetry", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port=8000"]
+# RUN poetry run pytest src/tests -s
+CMD ["poetry", "run", "uvicorn", "src:app", "--host", "0.0.0.0", "--port=8000"]
