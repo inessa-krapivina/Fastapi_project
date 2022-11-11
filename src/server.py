@@ -1,8 +1,6 @@
 from fastapi import FastAPI
 import uvicorn
-from src.database.db import create_tables, engine
-from src.database.models import User
-from sqlmodel import Session, select
+from src.db import create_tables, engine, User, get_session
 import platform
 from datetime import datetime
 
@@ -16,7 +14,7 @@ def on_startup():
 
 
 def create_user():
-    with Session(engine) as session:
+    with get_session() as session:
         user = User(
             name=platform.node(),
             date=str(datetime.now())
@@ -30,7 +28,7 @@ def create_user():
 
 @app.get("/")
 def read_users() -> User:
-    with Session(engine) as session:
+    with get_session() as session:
         statement = select(User).where(User.name == platform.node())
         results = session.exec(statement)
 
