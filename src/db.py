@@ -3,10 +3,13 @@ from typing import Optional
 from datetime import datetime
 
 
-class User(SQLModel, table=True):
-    id: int = Field(default=None, primary_key=True)
-    name: Optional[str]
+class UserResponse(SQLModel):
+    name: str
     date: datetime
+
+
+class User(UserResponse, table=True):
+    id: int = Field(default=None, primary_key=True)
 
 
 engine = create_engine(
