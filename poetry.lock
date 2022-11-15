@@ -227,23 +227,6 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
-name = "responses"
-version = "0.22.0"
-description = "A utility library for mocking out the `requests` Python library."
-category = "main"
-optional = false
-python-versions = ">=3.7"
-
-[package.dependencies]
-requests = ">=2.22.0,<3.0"
-toml = "*"
-types-toml = "*"
-urllib3 = ">=1.25.10"
-
-[package.extras]
-tests = ["pytest (>=7.0.0)", "coverage (>=6.0.0)", "pytest-cov", "pytest-asyncio", "pytest-httpserver", "flake8", "types-requests", "mypy"]
-
-[[package]]
 name = "sniffio"
 version = "1.3.0"
 description = "Sniff out which async library your code is running under"
@@ -322,28 +305,12 @@ anyio = ">=3.4.0,<5"
 full = ["itsdangerous", "jinja2", "python-multipart", "pyyaml", "requests"]
 
 [[package]]
-name = "toml"
-version = "0.10.2"
-description = "Python Library for Tom's Obvious, Minimal Language"
-category = "main"
-optional = false
-python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
-
-[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
 category = "main"
 optional = false
 python-versions = ">=3.7"
-
-[[package]]
-name = "types-toml"
-version = "0.10.8"
-description = "Typing stubs for toml"
-category = "main"
-optional = false
-python-versions = "*"
 
 [[package]]
 name = "typing-extensions"
@@ -384,7 +351,7 @@ standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "134647f545bf7a308bc3fcbacadecda4ca092ec518a71b6c69686ec4188cc923"
+content-hash = "2c2be5e8c3299e0b15cd908941485dd9e6ad64101a434a5f2ebf1c9c5d2c5192"
 
 [metadata.files]
 anyio = []
@@ -406,15 +373,12 @@ pydantic = []
 pyparsing = []
 pytest = []
 requests = []
-responses = []
 sniffio = []
 sqlalchemy = []
 sqlalchemy2-stubs = []
 sqlmodel = []
 starlette = []
-toml = []
 tomli = []
-types-toml = []
 typing-extensions = []
 urllib3 = []
 uvicorn = []
