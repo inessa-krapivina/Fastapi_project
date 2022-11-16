@@ -19,4 +19,4 @@ jobs:
       - name: Start containers
         run: docker-compose -f "docker-compose.yml" up -d
       - name: Test with pytest
-        run: pytest tests.py --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
+        run: pytest tests.py --doctest-modules --junitxml=junit/test-results.xml
