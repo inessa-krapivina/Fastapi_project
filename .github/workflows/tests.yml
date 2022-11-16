@@ -19,5 +19,4 @@ jobs:
       - name: Start containers
         run: docker-compose -f "docker-compose.yml" up -d
       - name: Test with pytest
-        run: |
-          pytest test_read_users.py
+        run: pytest test_read_users.py
