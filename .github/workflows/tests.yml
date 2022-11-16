@@ -23,5 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
           pip install starlette
+          pip install httpx
       - name: Test with pytest
         run: pytest tests.py --doctest-modules --junitxml=junit/test-results.xml
