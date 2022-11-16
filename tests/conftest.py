@@ -26,8 +26,3 @@ def client_fixture(session: Session):
     client = TestClient(app)
     yield client
     app.dependency_overrides.clear()
-
-'''@fixture(scope="session")
-def server_test() -> TestClient:
-    with TestClient(app) as client:
-        yield client'''
