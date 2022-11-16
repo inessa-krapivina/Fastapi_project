@@ -18,8 +18,5 @@ jobs:
 
       - name: Start containers
         run: docker-compose -f "docker-compose.yml" up -d
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
-      - run: npm run codestyle
-      #  run: pytest test_read_users.py --doctest-modules --junitxml=junit/test-results.xml
+      - name: Test with pytest
+        run: pytest test_read_users.py --doctest-modules --junitxml=junit/test-results.xml
