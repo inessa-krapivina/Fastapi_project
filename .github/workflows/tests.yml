@@ -27,8 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -U pip
-          pip install poetry
-          poetry install
+          pip install pytest
 
       - name: Test with pytest
         run: pytest tests.py --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
