@@ -1,7 +1,7 @@
 from pytest import fixture
 from starlette.testclient import TestClient
 from src.server import app
-from src.database.db import get_session
+from src.db import get_session
 from sqlmodel import Session, SQLModel, create_engine
 from sqlmodel.pool import StaticPool
 
@@ -19,7 +19,7 @@ def session_fixture():
 @fixture(name="client")
 def client_fixture(session: Session):
     def get_session_override():
-        return session
+     return session
 
     app.dependency_overrides[get_session] = get_session_override
 

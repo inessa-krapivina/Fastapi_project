@@ -1,6 +1,4 @@
-import pytest
 from starlette.testclient import TestClient
-from src.server import app
 
 
 def test_read_users(client: TestClient):

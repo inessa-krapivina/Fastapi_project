@@ -16,7 +16,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Start containers
-        run: docker-compose -f "docker-compose.yml" up -d
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+
+      - name: Install pytest
+        run:  poetry add pytest
+
       - name: Test with pytest
         run: pytest test_read_users.py --doctest-modules --junitxml=junit/test-results.xml
