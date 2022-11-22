@@ -42,7 +42,7 @@ jobs:
 
       - name: Lint with flake8
         run: |
-          poetry install flake8
+          poetry add flake8
           flake8 .
         continue-on-error: true
 
