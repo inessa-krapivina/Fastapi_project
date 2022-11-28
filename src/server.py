@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Depends
 from sqlmodel import select, Session
-import uvicorn
-from src.db import create_tables, engine, User, UserResponse, get_session
+from src.db import create_tables, User, UserResponse, get_session
 import platform
 from datetime import datetime
 

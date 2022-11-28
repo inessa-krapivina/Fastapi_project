@@ -1,5 +1,4 @@
 from sqlmodel import create_engine, SQLModel, Session, Field
-from typing import Optional
 from datetime import datetime
 
 
@@ -19,6 +18,7 @@ engine = create_engine(
 
 def create_tables():
     SQLModel.metadata.create_all(engine)
+
 
 get_session = lambda: Session(engine)
 
