@@ -12,19 +12,18 @@ def session_fixture():
         "sqlite://", connect_args={"check_same_thread": False},
         poolclass=StaticPool
     )
+    SQLModel.metadata.create_all(engine)
     with Session(engine) as session:
         yield session
 
 
-@fixture
+@fixture(name="client")
 def client_fixture(session: Session):
     def get_session_override():
         return session
 
     app.dependency_overrides[get_session] = get_session_override
 
-    def server_test() -> TestClient:
-        with TestClient(app) as client:
-            yield client
-
+    client = TestClient(app)
+    yield client
     app.dependency_overrides.clear()
