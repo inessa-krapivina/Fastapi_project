@@ -2,7 +2,6 @@ name: docker-compose-actions-workflow
 
 on: [ push ]
 jobs:
-
   linters:
     runs-on: ubuntu-latest
     steps:
@@ -47,7 +46,7 @@ jobs:
           path: .venv
           key: pydeps-${{ hashFiles('**/poetry.lock') }}
 
-      - run: Poetry install --no-interaction --no-root
+      - run: poetry install --no-interaction --no-root
         if: steps.cache-deps.outputs.cache-hit != 'true'
 
       - run: poetry run pytest
