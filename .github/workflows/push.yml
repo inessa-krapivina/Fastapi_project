@@ -2,30 +2,36 @@ name: docker-compose-actions-workflow
 
 on: [ push ]
 jobs:
-  linters:
+  flake8:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Lint with pflake8
+      - name: Lint with flake8
         run: |
           pip install Flake8-pyproject
           flake8 .
 
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
       - name: Black formatter
         uses: psf/black@stable
 
-      - name: Install mypy
-        run: pip install mypy
-      - name: Run mypy
-        uses: sasanquaneuf/mypy-github-action@releases/v1
+  isort:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - uses: jamescurtin/isort-action@master
 
   tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -59,8 +65,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Login to Docker Hub
         uses: docker/login-action@v2
