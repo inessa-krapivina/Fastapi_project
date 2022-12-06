@@ -14,10 +14,7 @@ def on_startup():
 
 
 def create_user(session):
-    user = User(
-        name=platform.node(),
-        date=datetime.now()
-    )
+    user = User(name=platform.node(), date=datetime.now())
     session.add(user)
     session.commit()
 
