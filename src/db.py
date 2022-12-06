@@ -1,5 +1,6 @@
-from sqlmodel import create_engine, SQLModel, Session, Field
 from datetime import datetime
+
+from sqlmodel import Field, Session, SQLModel, create_engine
 
 
 class UserResponse(SQLModel):

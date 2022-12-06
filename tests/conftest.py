@@ -1,9 +1,10 @@
 from pytest import fixture
-from starlette.testclient import TestClient
-from src.server import app
-from src.db import get_session
 from sqlmodel import Session, SQLModel, create_engine
 from sqlmodel.pool import StaticPool
+from starlette.testclient import TestClient
+
+from src.db import get_session
+from src.server import app
 
 
 @fixture(name="session")

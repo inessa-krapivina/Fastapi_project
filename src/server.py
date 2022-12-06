@@ -1,9 +1,10 @@
-from fastapi import FastAPI, Depends
-from sqlmodel import select, Session
-from src.db import create_tables, User, UserResponse, get_session
 import platform
 from datetime import datetime
 
+from fastapi import Depends, FastAPI
+from sqlmodel import Session, select
+
+from src.db import User, UserResponse, create_tables, get_session
 
 app = FastAPI()
 
