@@ -11,7 +11,7 @@ jobs:
       - name: Lint with pflake8
         run: |
           pip install pyproject-flake8
-          flake8 .
+          pflake8 .
 
       - name: Black formatter
         uses: psf/black@stable
