@@ -51,7 +51,7 @@ jobs:
       - run: Poetry install --no-interaction --no-root
         if: steps.cache-deps.outputs.cache-hit != 'true'
 
-      - run: Poetry run pytest
+      - run: poetry run pytest
 
   docker:
     runs-on: ubuntu-latest
