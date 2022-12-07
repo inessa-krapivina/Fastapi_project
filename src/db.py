@@ -1,5 +1,6 @@
-from sqlmodel import create_engine, SQLModel, Session, Field
 from datetime import datetime
+
+from sqlmodel import Field, Session, SQLModel, create_engine
 
 
 class UserResponse(SQLModel):
@@ -11,9 +12,7 @@ class User(UserResponse, table=True):
     id: int = Field(default=None, primary_key=True)
 
 
-engine = create_engine(
-    "postgresql://admin:123123@db:5432/db"
-)
+engine = create_engine("postgresql://admin:123123@db:5432/db")
 
 
 def create_tables():
